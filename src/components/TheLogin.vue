@@ -1,16 +1,11 @@
 <template>
   <div class="col-md-12">
     <div class="card card-container">
-      <img
-        id="profile-img"
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      />
       <Form @submit="handleLogin" :validation-schema="schema">
         <div class="form-group">
           <label for="username">Username</label>
-          <Field name="username" type="text" class="form-control" />
-          <ErrorMessage name="username" class="error-feedback" />
+          <Field name="login" type="text" class="form-control" />
+          <ErrorMessage name="login" class="error-feedback" />
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -38,6 +33,7 @@
 
 <script>
 import { ErrorMessage, Field, Form } from "vee-validate";
+import AuthService from "@/services/auth.service";
 import * as yup from "yup";
 
 export default {
@@ -45,7 +41,7 @@ export default {
   components: { Form, Field, ErrorMessage },
   data() {
     const schema = yup.object().shape({
-      username: yup.string().required("Username is required!"),
+      login: yup.string().required("Login is required!"),
       password: yup.string().required("Password is required!"),
     });
     return {
@@ -57,6 +53,7 @@ export default {
   methods: {
     handleLogin(user) {
       console.debug("Hello {}", user);
+      AuthService.login(user);
     },
   },
 };
