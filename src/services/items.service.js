@@ -1,11 +1,10 @@
-import axios from "axios";
+import client from "./axios.service";
 import authHeader from "./auth-header";
 
-const API_URL = "https://rss-dev-api.pedr0.net/";
 
 class ItemsService {
   getItems() {
-    return axios.get(API_URL + "items", { headers: authHeader() });
+    return client.get("items", { headers: authHeader() });
   }
 }
 
