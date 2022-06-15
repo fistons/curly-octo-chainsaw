@@ -2,6 +2,9 @@ name: Build and deploy
 on: [workflow_dispatch]
 jobs: 
   build_and_test:
+    strategy:
+      matrix: 
+        env: [dev]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -10,7 +13,7 @@ jobs:
           node-version: 18
       - run: npm install
       - run: npm run lint
-      - run: npm run build
+      - run: npm run build -- --mode ${{ matrix.env }}
       - name: S3 upload
         uses: remyleone/scw-s3-action@v0.0.2
         with:
