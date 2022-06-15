@@ -17,7 +17,7 @@ jobs:
       - name: S3 upload
         uses: remyleone/scw-s3-action@v0.0.2
         with:
-          args: s3 cp dist s3://curly-octo-chainsaw --recursive
+          args: s3 sync dist s3://curly-octo-chainsaw --acl public-read
         env:
           SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
           SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
