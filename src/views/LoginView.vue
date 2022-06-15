@@ -1,9 +1,9 @@
 <script setup>
-import ItemList from "@/components/ItemList.vue";
+import TheLogin from "@/components/TheLogin.vue";
 </script>
 
 <template>
   <main>
-    <ItemList />
+    <TheLogin />
   </main>
 </template>

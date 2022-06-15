@@ -52,10 +52,23 @@ export default {
   },
   methods: {
     handleLogin(user) {
-      console.debug("Hello {}", user);
-      AuthService.login(user);
+      this.loading = true;
+      AuthService.authenticate(user).then(
+        () => this.$router.push("/"),
+      );
     },
   },
+  mounted() {
+    if (this.currentUser) {
+      this.$router.push("/");
+    }
+  },
+  computed: {
+    currentUser() {
+      return localStorage.getItem("user");
+
+    }
+  }
 };
 </script>
 
